@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.deway.blog.mapper.UserMapper">
+    <resultMap id="BaseResultMap" type="com.deway.blog.entiry.User">
+        <id column="User_id" jdbcType="BIGINT" property="id" />
+        <result column="User_name" jdbcType="VARCHAR" property="name" />
+        <result column="User_password" jdbcType="VARCHAR" property="password" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+    User.id as User_id, User.`name` as `User_name`, User.`password` as `User_password`
+  </sql>
+
+    <insert id="create">
+        insert into User(`name`,`password`) values(#{name}, #{password})
+    </insert>
+
+
+
+
+</mapper>

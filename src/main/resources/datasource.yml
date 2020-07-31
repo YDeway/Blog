@@ -1,0 +1,7 @@
+datasource:
+  mariaDB:
+    user:
+      username: root
+      password: 2012dwDW
+      driver-class-name: com.mysql.jdbc.Driver
+      url: mysql:jdbc://www.touchim.cn:3306/user
