@@ -4,19 +4,26 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
+import org.springframework.stereotype.Component;
 
 @Aspect
+@Component
 public class DataSourceExchangeAspect {
 
-    @Pointcut("execution(* com.deway.blog.service.impl.*(..))")
+    @Pointcut("execution(* com.deway.blog.mapper..*Mapper.*(..))")
     public void pointCut(){}
 
     @Around("pointCut()")
     public Object around(ProceedingJoinPoint point) throws Throwable {
-        var originObject = point.getTarget();
-        var ann = originObject.getClass().getAnnotation(TargetDataSource.class);
-        DynamicDataSource.setDataSource(ann.dataSource());
-        return point.proceed();
+        var interfaces = point.getTarget().getClass().getInterfaces();
+        for(var itfe : interfaces) {
+            TargetDataSource annotation = itfe.getAnnotation(TargetDataSource.class);
+            if(annotation != null) {
+                DynamicDataSource.setDataSource(annotation.dataSource());
+                return point.proceed();
+            }
+        }
+        throw new Exception("Mapper needs to be annotated by TargetDataSource!");
     }
 
 

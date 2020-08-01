@@ -4,6 +4,7 @@ import com.alibaba.druid.pool.DruidDataSource;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
 import org.springframework.stereotype.Component;
@@ -11,7 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 这个坑定是有的问题的
+ * 动态选择数据源，不过数据源都写死在代码里了，不过根据我现在编的需求这个情况是正常的
  */
 @Component
 public class DynamicDataSource extends AbstractRoutingDataSource {
@@ -19,33 +20,36 @@ public class DynamicDataSource extends AbstractRoutingDataSource {
     public static final String USER_DATASOURCE = "userDataSource";
     public static final String BLOG_DATASOURCE = "blogDataSource";
 
-    private static String dataSource;
+    //数据源的key必须线程私有
+    private static final ThreadLocal<String> KEY_OF_DATASOURCE = new ThreadLocal<>();
 
-    @Override
-    public Object determineCurrentLookupKey() {
-        return dataSource;
-    }
-
-    public static void setDataSource(String dataSource) {
-        DynamicDataSource.dataSource = dataSource;
-    }
-
+    @SuppressWarnings("all")
     public DynamicDataSource(final Map<String, DruidDataSource> dataSourceMap) {
         super.setDefaultTargetDataSource(null);
         super.setTargetDataSources(new HashMap<>() {
             {
-                for (Entry entry : dataSourceMap.entrySet()) {
+                for (Entry<String, DruidDataSource> entry : dataSourceMap.entrySet()) {
                     put(entry.getKey(), entry.getValue());
                 }
             }
         });
 
     }
+
+    @Override
+    public  Object determineCurrentLookupKey() {
+        return KEY_OF_DATASOURCE.get();
+    }
+
+    public static void setDataSource(String key) {
+        KEY_OF_DATASOURCE.set(key);
+    }
 }
 
 @Configuration
 @PropertySource(value = "classpath:/datasource.properties")
-class DataSource {
+class DataSourceFactory {
+
 
     @Bean(DynamicDataSource.BLOG_DATASOURCE)
     public DruidDataSource blogDataSource(@Value("${datasource.mariaDB.blog.username}")String username,
@@ -60,9 +64,6 @@ class DataSource {
         return dataSource;
     }
 
-
-
-    //    @Value("#{datasource.mariaDB.user}")
     @Bean(DynamicDataSource.USER_DATASOURCE)
     public DruidDataSource userDataSource(@Value("${datasource.mariaDB.user.username}")String username,
                                           @Value("${datasource.mariaDB.user.password}")String password,
@@ -75,5 +76,8 @@ class DataSource {
         dataSource.setDriverClassName(driver);
         return dataSource;
     }
+
+
+
 }
 

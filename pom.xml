@@ -22,7 +22,8 @@
     <mybatis-plus.version>3.3.2</mybatis-plus.version>
     <mariadb.version>2.6.0</mariadb.version>
     <swagger.version>3.0.0</swagger.version>
-    <aspectjrt.version>1.9.5</aspectjrt.version>
+    <aspectj.version>1.9.5</aspectj.version>
+    <slf4j.vsersion>1.7.30</slf4j.vsersion>
   </properties>
 
   <dependencies>
@@ -85,16 +86,24 @@
       <artifactId>mariadb-java-client</artifactId>
       <version>${mariadb.version}</version>
     </dependency>
+
     <dependency>
       <groupId>org.aspectj</groupId>
       <artifactId>aspectjrt</artifactId>
-      <version>${aspectjrt.version}</version>
+      <version>${aspectj.version}</version>
     </dependency>
-      <dependency>
-          <groupId>javax.annotation</groupId>
-          <artifactId>jsr250-api</artifactId>
-          <version>1.0</version>
-      </dependency>
+
+    <dependency>
+      <groupId>org.aspectj</groupId>
+      <artifactId>aspectjweaver</artifactId>
+      <version>${aspectj.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>${slf4j.vsersion}</version>
+    </dependency>
 
       <!--    <dependency>-->
 <!--      <groupId>io.springfox</groupId>-->

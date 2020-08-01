@@ -8,12 +8,11 @@ import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import java.io.IOException;
 
 @Configuration
-//@MapperScan(basePackages = {"com.deway.blog.mapper"})
 public class MybatisConfig {
 
     @Bean
     public MapperScannerConfigurer mapperScannerConfigurer() {
-        MapperScannerConfigurer mapScanner = new MapperScannerConfigurer();
+        var mapScanner = new MapperScannerConfigurer();
         mapScanner.setBasePackage("com.deway.blog.mapper");
         return mapScanner;
     }
