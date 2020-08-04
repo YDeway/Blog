@@ -7,6 +7,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import java.io.IOException;
 
+/**
+ * @author Deway
+ */
 @Configuration
 public class MybatisConfig {
 

@@ -6,11 +6,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * @author Deway
+ */
 @RestController
 @RequestMapping("/")
 public class MainController {
 
-    @GetMapping
+    @GetMapping("/main")
     public R info(HttpServletRequest request) {
         request.getSession();
         return R.response(200, "SUCCESS", System.getProperties());

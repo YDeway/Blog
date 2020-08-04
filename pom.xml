@@ -21,9 +21,11 @@
     <snakeyaml.version>1.26</snakeyaml.version>
     <mybatis-plus.version>3.3.2</mybatis-plus.version>
     <mariadb.version>2.6.0</mariadb.version>
-    <swagger.version>3.0.0</swagger.version>
+    <swagger.version>2.7.0</swagger.version>
     <aspectj.version>1.9.5</aspectj.version>
     <slf4j.vsersion>1.7.30</slf4j.vsersion>
+    <junit.version>4.12</junit.version>
+    <jedis.version>3.3.0</jedis.version>
   </properties>
 
   <dependencies>
@@ -105,12 +107,34 @@
       <version>${slf4j.vsersion}</version>
     </dependency>
 
-      <!--    <dependency>-->
-<!--      <groupId>io.springfox</groupId>-->
-<!--      <artifactId>springfox-swagger2</artifactId>-->
-<!--      <version>${swagger.version}</version>-->
-<!--    </dependency>-->
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>${junit.version}</version>
+      <scope>test</scope>
+    </dependency>
 
+<!--    <dependency>-->
+<!--      <groupId></groupId>-->
+<!--      <artifactId></artifactId>-->
+<!--    </dependency>-->
+    <dependency>
+      <groupId>io.springfox</groupId>
+      <artifactId>springfox-swagger2</artifactId>
+      <version>${swagger.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>io.springfox</groupId>
+      <artifactId>springfox-swagger-ui</artifactId>
+      <version>${swagger.version}</version>
+    </dependency>
+
+<!--    <dependency>-->
+<!--      <groupId>redis.clients</groupId>-->
+<!--      <artifactId>jedis</artifactId>-->
+<!--      <version>${jedis.version}</version>-->
+<!--    </dependency>-->
 
   </dependencies>
 

@@ -3,6 +3,9 @@ package com.deway.blog;
 import com.deway.blog.config.GlobalConfig;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
+/**
+ * @author Deway
+ */
 public class WebBoot extends AbstractAnnotationConfigDispatcherServletInitializer {
 
     @Override

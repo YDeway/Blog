@@ -1,7 +1,20 @@
-datasource:
-  mariaDB:
-    user:
-      username: root
-      password: 2012dwDW
-      driver-class-name: com.mysql.jdbc.Driver
-      url: mysql:jdbc://www.touchim.cn:3306/user
+spring:
+
+  application:
+    name: blog
+
+  datasource:
+      user:
+        username: wcdmaria
+        password: wistron888
+        driver-class-name: org.mariadb.jdbc.Driver
+        url: jdbc:mariadb://10.62.201.102:3306/buck
+      blog:
+        username: wcdmaria
+        password: wistron888
+        driver-class-name: org.mariadb.jdbc.Driver
+        url: jdbc:mariadb://10.62.201.102:3306/buck2
+
+  redis:
+    host:
+    port:

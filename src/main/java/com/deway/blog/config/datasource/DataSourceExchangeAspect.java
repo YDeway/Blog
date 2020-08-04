@@ -6,6 +6,10 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 
+/**
+ * 程序运行时实时切换Mapper对应的数据源
+ * @author deway
+ */
 @Aspect
 @Component
 public class DataSourceExchangeAspect {
