@@ -1,8 +1,7 @@
 package com.deway.blog.config;
 
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import com.deway.blog.tool.config.PropertyParser;
+import org.springframework.context.annotation.*;
 
 /**
  * 全局配置文件
@@ -11,8 +10,8 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
  */
 @Configuration
 @ComponentScan("com.deway.blog")
+@PropertySource(value = "classpath:/application.yml", factory = PropertyParser.class)
 @EnableAspectJAutoProxy
 public class GlobalConfig {
-
 
 }

@@ -1,11 +1,9 @@
 package com.deway.blog.config.datasource;
 
 import com.alibaba.druid.pool.DruidDataSource;
-import com.deway.blog.tool.config.PropertyParser;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
 import org.springframework.stereotype.Component;
 import java.util.HashMap;
@@ -37,7 +35,7 @@ public class DynamicDataSource extends AbstractRoutingDataSource {
                 }
             }
         });
-
+        this.afterPropertiesSet();
     }
 
     @Override
@@ -59,12 +57,10 @@ public class DynamicDataSource extends AbstractRoutingDataSource {
 }
 
 @Configuration
-@PropertySource(value = "classpath:/datasource.yml", factory = PropertyParser.class)
 class DataSourceFactory {
 
-
     @Bean(DynamicDataSource.BLOG_DATASOURCE)
-//    @Value()
+
     public DruidDataSource blogDataSource(@Value("${spring.datasource.blog.username}")String username,
                                           @Value("${spring.datasource.blog.password}")String password,
                                           @Value("${spring.datasource.blog.url}")String url,

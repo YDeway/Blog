@@ -1,20 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.deway.blog.mapper.UserMapper">
-    <resultMap id="BaseResultMap" type="com.deway.blog.entiry.User">
+    <resultMap id="BaseResultMap" type="com.deway.blog.entiry.auth.User">
         <id column="User_id" jdbcType="BIGINT" property="id" />
         <result column="User_name" jdbcType="VARCHAR" property="name" />
         <result column="User_password" jdbcType="VARCHAR" property="password" />
     </resultMap>
 
-    <sql id="Base_Column_List">
-    User.id as User_id, User.`name` as `User_name`, User.`password` as `User_password`
+    <sql id="baseMap">
+<!-- id as User_id, User.`name` as `User_name`, User.`password` as `User_password` -->
   </sql>
-
-    <insert id="create">
-        insert into User(`name`,`password`) values(#{name}, #{password})
+    <insert id="create" >
+        insert into User(user_id,password,salt,nickname,email)
+        values(#{userId},#{password},#{salt},#{nickname},#{email})
     </insert>
-
+    <select id="isExistedById" resultType="java.lang.Boolean">
+        select count(user_id)
+        from  user
+        where user_id=#{userId}
+    </select>
+    <!-- 动态SQL应该会去掉多余的","、"and"等符号，但写法我忘了，mybatis官网炸了很久了，回去看下书-->
+    <select id="find" resultType="com.deway.blog.entiry.auth.User">
+        select *
+        from user
+        <where>
+            <if test="userId != null">
+              and  user_id=#{userId}
+            </if>
+            <if test="password != null">
+                and password=#{password}
+            </if>
+            <if test="salt != null">
+                and salt=#{salt}
+            </if>
+            <if test="id != null">
+                and id=#{id}
+            </if>
+            <if test="email != null">
+                and email=#{email}
+            </if>
+            <if test="nickname != null">
+                and nickname=#{nickname}
+            </if>
+        </where>
+    </select>
 
 
 

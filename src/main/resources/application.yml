@@ -9,6 +9,8 @@ spring:
         password: wistron888
         driver-class-name: org.mariadb.jdbc.Driver
         url: jdbc:mariadb://10.62.201.102:3306/buck
+
+
       blog:
         username: wcdmaria
         password: wistron888
@@ -16,5 +18,5 @@ spring:
         url: jdbc:mariadb://10.62.201.102:3306/buck2
 
   redis:
-    host:
-    port:
+    host: 127.0.0.1
+    port: 6379
