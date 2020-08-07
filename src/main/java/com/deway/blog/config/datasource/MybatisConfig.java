@@ -1,11 +1,10 @@
 package com.deway.blog.config.datasource;
 
-import com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean;
+import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.mapper.MapperScannerConfigurer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
-import java.io.IOException;
 
 /**
  * @author Deway
@@ -21,14 +20,17 @@ public class MybatisConfig {
     }
 
     @Bean
-    public MybatisSqlSessionFactoryBean userSqlSessionFactoryBean(DynamicDataSource dataSource) throws IOException {
-        var resourceResolver = new PathMatchingResourcePatternResolver();
-        var mappers = resourceResolver.getResources("classpath:/mapper/*Mapper.xml");
+    public SqlSessionFactoryBean userSqlSessionFactoryBean(DynamicDataSource dataSource) throws Exception {
 
-        var sqlSessionFactory = new MybatisSqlSessionFactoryBean();
-        sqlSessionFactory.setMapperLocations(mappers);
+        var resourceResolver = new PathMatchingResourcePatternResolver();
+
+        var sqlSessionFactory = new SqlSessionFactoryBean();
+        sqlSessionFactory.setMapperLocations(resourceResolver.getResources("classpath:/mapper/*Mapper.xml"));
+        sqlSessionFactory.setConfigLocation(resourceResolver.getResource("classpath:mybatis.xml"));
         sqlSessionFactory.setTypeAliasesPackage("com.deway.blog.entity");
         sqlSessionFactory.setDataSource(dataSource);
+
+        sqlSessionFactory.afterPropertiesSet();
 
         return sqlSessionFactory;
     }
