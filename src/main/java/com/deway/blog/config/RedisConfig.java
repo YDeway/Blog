@@ -18,10 +18,10 @@ public class RedisConfig {
         Jedis jedis = null;
         try {
              jedis = new Jedis(host, port);
+             System.out.println(jedis.ping());
         } catch (Throwable e) {
-            System.err.println(e.getMessage());
+            System.err.println("redis created failed: " + e.getMessage());
         }
-
         return jedis;
     }
 }

@@ -11,7 +11,7 @@
 <!-- id as User_id, User.`name` as `User_name`, User.`password` as `User_password` -->
   </sql>
     <insert id="create" >
-        insert into User(user_id,password,salt,nickname,email)
+        insert into user(user_id,password,salt,nickname,email)
         values(#{userId},#{password},#{salt},#{nickname},#{email})
     </insert>
     <select id="isExistedById" resultType="java.lang.Boolean">

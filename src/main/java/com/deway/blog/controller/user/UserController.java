@@ -4,6 +4,8 @@ import com.deway.blog.entiry.auth.User;
 import com.deway.blog.service.UserService;
 import com.deway.blog.tool.R;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.transaction.TransactionManager;
 import org.springframework.web.bind.annotation.*;
 
 /**

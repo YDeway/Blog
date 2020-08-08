@@ -19,9 +19,13 @@ import java.util.Base64;
 public class Pbkdf2Util {
 
     public static final String PBKDF2_ALGORITHM = "PBKDF2WithHmacSHA1";
+
     public static final String RANDOM_ALGORITHM = "SHA1PRNG";
+
     public static final int SALT_BYTE_SIZE = 16;
+
     public static final int HASH_BIT_SIZE = 64 * 8;
+
     public static final int PBKDF2_ITERATIONS = 1024;
 
     public static String encrypt(String key, byte[] salt) throws NoSuchAlgorithmException, InvalidKeySpecException {

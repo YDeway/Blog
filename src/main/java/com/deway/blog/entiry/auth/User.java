@@ -2,13 +2,23 @@ package com.deway.blog.entiry.auth;
 
 import lombok.Data;
 
+import java.io.Serializable;
+
 @Data
-public class User {
+public class User implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
     private Long id ;
+
     private String nickname;
+
     private String userId;
+
     private String password;
+
     private String email;
+
     private String salt;
 
 }

@@ -20,7 +20,7 @@ public class TransactionManager {
     public static final String USER_TRANSACTION = "userTransactionManager";
     public static final String BLOG_TRANSACTION = "blogTransactionManager";
 
-    @Bean(USER_TRANSACTION)
+    @Bean(name = USER_TRANSACTION)
     public DataSourceTransactionManager userTransactionManager(
             @Qualifier(DynamicDataSource.USER_DATASOURCE) DataSource dataSource) {
 
@@ -29,7 +29,7 @@ public class TransactionManager {
         return x;
     }
 
-    @Bean(BLOG_TRANSACTION)
+    @Bean(name = BLOG_TRANSACTION)
     public DataSourceTransactionManager blogTransactionManager(
             @Qualifier(DynamicDataSource.BLOG_DATASOURCE) DataSource dataSource) {
 

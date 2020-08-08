@@ -17,12 +17,12 @@ import java.security.spec.InvalidKeySpecException;
  */
 @Service
 @AllArgsConstructor
-@Transactional(rollbackFor = Throwable.class, transactionManager = TransactionManager.USER_TRANSACTION)
 public class UserServiceImpl implements UserService {
 
-    private UserMapper userMapper;
+    private final UserMapper userMapper;
 
     @Override
+    @Transactional(transactionManager = TransactionManager.USER_TRANSACTION)
     public boolean register(User user) {
         try {
             var salt = Pbkdf2Util.randomSalt();
@@ -33,7 +33,9 @@ public class UserServiceImpl implements UserService {
             e.printStackTrace();
             return false;
         }
-        return userMapper.create(user) > 0;
+        boolean b = userMapper.create(user);
+        System.out.println(1 / 0);
+        return  b;
     }
 
     @Override

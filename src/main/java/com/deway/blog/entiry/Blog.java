@@ -9,6 +9,7 @@ public class Blog {
 
     private Long id;
     private Long authorId;
+    private String title;
     private String content;
     private Date createTime;
     private Date updateTime;

@@ -14,7 +14,7 @@ import java.util.List;
 @TargetDataSource(dataSource = DynamicDataSource.USER_DATASOURCE)
 public interface UserMapper {
 
-    int create(User user);
+    boolean create(User user);
 
     Boolean isExistedById(@Param("userId") String userId);
 
