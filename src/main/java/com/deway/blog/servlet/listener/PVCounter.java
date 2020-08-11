@@ -3,6 +3,8 @@ package com.deway.blog.servlet.listener;
 import com.deway.blog.controller.MainController;
 import org.springframework.web.context.WebApplicationContext;
 
+import javax.servlet.ServletContextEvent;
+import javax.servlet.ServletContextListener;
 import javax.servlet.ServletRequestEvent;
 import javax.servlet.ServletRequestListener;
 import javax.servlet.annotation.WebListener;
@@ -16,7 +18,7 @@ import java.util.concurrent.atomic.AtomicLong;
  * @author Deway
  */
 @WebListener
-public class PVCounter implements HttpSessionListener, ServletRequestListener {
+public class PVCounter implements HttpSessionListener, ServletRequestListener, ServletContextListener {
 
     private final AtomicLong requestCount = new AtomicLong(0L);
     private final AtomicLong currentOnline = new AtomicLong(0L);
@@ -37,4 +39,9 @@ public class PVCounter implements HttpSessionListener, ServletRequestListener {
         requestCount.getAndIncrement();
     }
 
+    @Override
+    public void contextInitialized(ServletContextEvent sce) {
+        sce.getServletContext().setAttribute("currentOnline", currentOnline);
+        sce.getServletContext().setAttribute("requestCount", requestCount);
+    }
 }

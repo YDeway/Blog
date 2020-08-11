@@ -17,12 +17,12 @@ public class TransactionTest {
     private UserService userService;
 
     @Test
-    public void register() {
+    public void register() throws Exception {
 
         System.out.println(userService.register(new User (){
             {
-                this.setPassword("123456");
-                this.setUserId("wwww");
+                this.setPassword("12w3456");
+                this.setUserId("wwwww");
             }
         }));
     }

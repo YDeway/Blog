@@ -7,6 +7,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 
 /**
+ * @todo 到时候将所有的配置外置到配置文件中
+ *
  * @author Deway
  */
 @Configuration

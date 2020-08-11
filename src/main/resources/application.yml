@@ -71,5 +71,5 @@ spring:
       url: jdbc:mariadb://10.62.201.102:3306/buck2
 
   redis:
-    host: 127.0.0.1
+    host: www.touchim.cn
     port: 6379

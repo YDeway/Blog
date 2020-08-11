@@ -22,19 +22,21 @@ public class UserServiceImpl implements UserService {
     private final UserMapper userMapper;
 
     @Override
-    @Transactional(transactionManager = TransactionManager.USER_TRANSACTION)
-    public boolean register(User user) {
+    @Transactional(rollbackFor = Exception.class, transactionManager = TransactionManager.USER_TRANSACTION)
+    public boolean register(User user) throws Exception{
         try {
             var salt = Pbkdf2Util.randomSalt();
             user.setSalt(salt);
             var pwd  = Pbkdf2Util.encrypt(user.getPassword(), salt.getBytes());
             user.setPassword(pwd);
         } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
-            e.printStackTrace();
-            return false;
+            var ex = new Exception();
+            ex.addSuppressed(e);
+            ex.initCause(e);
+            throw ex;
         }
         boolean b = userMapper.create(user);
-        System.out.println(1 / 0);
+//        System.out.println(1 / 0);
         return  b;
     }
 

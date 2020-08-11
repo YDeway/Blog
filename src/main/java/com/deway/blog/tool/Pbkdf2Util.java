@@ -28,8 +28,8 @@ public class Pbkdf2Util {
 
     public static final int PBKDF2_ITERATIONS = 1024;
 
-    public static String encrypt(String key, byte[] salt) throws NoSuchAlgorithmException, InvalidKeySpecException {
-        var pbeKeySpec = new PBEKeySpec(key.toCharArray(), salt, PBKDF2_ITERATIONS, HASH_BIT_SIZE);
+    public static String encrypt(String pwd, byte[] salt) throws NoSuchAlgorithmException, InvalidKeySpecException {
+        var pbeKeySpec = new PBEKeySpec(pwd.toCharArray(), salt, PBKDF2_ITERATIONS, HASH_BIT_SIZE);
         var encoded = SecretKeyFactory
                 .getInstance(PBKDF2_ALGORITHM)
                 .generateSecret(pbeKeySpec)

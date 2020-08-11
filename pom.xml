@@ -28,7 +28,7 @@
     <junit.version>4.12</junit.version>
     <jedis.version>3.3.0</jedis.version>
     <p6spy.version>3.9.1</p6spy.version>
-    <jjwt.version>0.9.1</jjwt.version>
+    <java-jwt.version>3.10.3</java-jwt.version>
     <jakarta.xml.bind-api>2.3.3</jakarta.xml.bind-api>
   </properties>
 
@@ -155,10 +155,12 @@
     </dependency>
 
     <dependency>
-      <groupId>io.jsonwebtoken</groupId>
-      <artifactId>jjwt</artifactId>
-      <version>${jjwt.version}</version>
+      <groupId>com.auth0</groupId>
+      <artifactId>java-jwt</artifactId>
+      <version>${java-jwt.version}</version>
     </dependency>
+
+
     <dependency>
       <groupId>jakarta.xml.bind</groupId>
       <artifactId>jakarta.xml.bind-api</artifactId>

@@ -1,7 +1,6 @@
 package com.deway.blog;
 
 import com.deway.blog.config.GlobalConfig;
-import org.springframework.util.DigestUtils;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 /**

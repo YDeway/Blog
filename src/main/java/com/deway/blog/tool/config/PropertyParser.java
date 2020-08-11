@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.util.Properties;
 
 /**
- * 还没实现Spring MVC读取ＹＭＬ文档并直接注入对象或者Ｍａｐ或者Properties
+ *  读取yaml、properties配置文件
  *
  * @author Deway
  */
