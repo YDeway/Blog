@@ -1,7 +1,7 @@
 package com.deway.blog.entiry.auth;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import com.deway.blog.tool.Reserved;
 import lombok.Data;
 
 /**
@@ -16,14 +16,21 @@ public class AccessToken implements Serializable {
 
     private Long id;
 
-    private Long userId;
+    private Long uid;
 
-    private String token;
+    private Long exp;
 
-    private Integer ttl;
+    private Long iat;
 
-    private LocalDateTime createTime;
+    private String jti;
 
+    @Reserved
     private String scope;
+
+    public static class Constant {
+        public static final String TOKEN = "token";
+        public static final String SALT = "salt";
+        public static final String UID = "uid";
+    }
 
 }

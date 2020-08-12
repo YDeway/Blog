@@ -4,7 +4,7 @@ import com.deway.blog.entiry.auth.User;
 
 public interface UserService {
 
-    boolean register(User user) throws Exception;
+    boolean create(User user) throws Exception;
 
     boolean exist(String userId);
 

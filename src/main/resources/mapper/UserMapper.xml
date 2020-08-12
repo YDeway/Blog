@@ -21,7 +21,7 @@
         where user_id=#{userId}
     </select>
 
-    <!-- 动态SQL应该会去掉多余的","、"and"等符号，但写法我忘了，mybatis官网炸了很久了，回去看下书-->
+    <!-- 动态SQL应该会去掉多余的","、"and"等符号，但写法我忘了-->
     <select id="find" resultType="com.deway.blog.entiry.auth.User">
         select *
         from user
@@ -29,21 +29,15 @@
             <if test="userId != null">
               and  user_id=#{userId}
             </if>
-            <if test="password != null">
-                and password=#{password}
-            </if>
-            <if test="salt != null">
-                and salt=#{salt}
-            </if>
+
             <if test="id != null">
                 and id=#{id}
             </if>
-            <if test="email != null">
-                and email=#{email}
-            </if>
+
             <if test="nickname != null">
                 and nickname=#{nickname}
             </if>
+
         </where>
     </select>
 

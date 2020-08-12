@@ -2,49 +2,54 @@ package com.deway.blog.tool;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
+import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.deway.blog.entiry.auth.AccessToken;
-
-import java.util.Base64;
-import java.util.Date;
-import java.util.HashMap;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.lang.NonNull;
+import java.util.*;
 
 public class JwtUtil {
 
-//    @Value("")
-    private int EXPIRE_INTERVAL = 0;
-
-    public static String encrypt(String secretKey, AccessToken accessToken) {
+    /**
+     * jwt生成器
+     *
+     * @param kv 需要保存到jwt的数据
+     * @param secretKey 加密密钥
+     * @param expire 过期时间，单位毫秒
+     * @return jwt字符串
+     */
+    public static String encrypt(@NonNull Map<String, String> kv, String secretKey, int expire) {
 
         long now = System.currentTimeMillis();
 
         var token = JWT.create()
                 .withIssuedAt(new Date(now))
-                .withExpiresAt(new Date(now + 30 * 60 * 1000))
-                .withJWTId(accessToken.getUserId().toString())
-                .withClaim("k", "v")
-                .withClaim("ss", new HashMap<String, AccessToken>() {
-                    {
-                        this.put("sda", accessToken);
-                    }
-                })
-                .sign(Algorithm.HMAC256(secretKey));
+                .withExpiresAt(new Date(now + expire));
 
-        return token;
+        kv.forEach(token::withClaim);
+
+        return token.sign(Algorithm.HMAC256(secretKey));
+
     }
 
-    public static void decrypt(String secretKey, String token) {
-//        JWTVerifier jwtVerifier = JWT.require(Algorithm.HMAC256(secretKey)).build();
-//        jwtVerifier.verify(token);
+    public static AccessToken decrypt(String secretKey, String token) throws Exception {
+
+        var jwtVerifier = JWT.require(Algorithm.HMAC256(secretKey)).build();
+        try {
+            jwtVerifier.verify(token);
+        } catch (JWTVerificationException e) {
+            e.printStackTrace();
+            var ex = new Exception(e);
+            ex.initCause(e);
+            throw ex;
+        }
+
         var decode = JWT.decode(token);
+        var payload = Base64.getDecoder().decode(decode.getPayload());
 
-        byte[] payload = Base64.getDecoder().decode(decode.getPayload());
-        byte[] header = Base64.getDecoder().decode(decode.getHeader());
+        var mapper = new ObjectMapper();
 
-
-        System.out.println(decode.getSignature());
-        System.out.println(new String(payload));
-        System.out.println(new String(header));
-
-
+        return mapper.readValue(payload, AccessToken.class);
     }
+
 }

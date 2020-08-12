@@ -19,7 +19,7 @@ public class TransactionTest {
     @Test
     public void register() throws Exception {
 
-        System.out.println(userService.register(new User (){
+        System.out.println(userService.create(new User (){
             {
                 this.setPassword("12w3456");
                 this.setUserId("wwwww");

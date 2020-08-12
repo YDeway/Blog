@@ -63,12 +63,13 @@ spring:
       driver-class-name: org.mariadb.jdbc.Driver
       url: jdbc:mariadb://10.62.201.102:3306/buck
 
-
     blog:
       username: wcdmaria
       password: wistron888
       driver-class-name: org.mariadb.jdbc.Driver
       url: jdbc:mariadb://10.62.201.102:3306/buck2
+
+  session-expire: 3000
 
   redis:
     host: www.touchim.cn

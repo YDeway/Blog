@@ -1,8 +1,10 @@
 
 import com.deway.blog.entiry.auth.AccessToken;
 import com.deway.blog.tool.JwtUtil;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import org.junit.Test;
 import java.time.LocalDateTime;
+import java.util.HashMap;
 
 public class JwtTest {
 
@@ -12,16 +14,16 @@ public class JwtTest {
     }
 
     @Test
-    public void decrypt() {
-        var token = JwtUtil.encrypt("sdasfdsgjsapfjio", new AccessToken() {
+    public void decrypt() throws Exception {
+
+
+        var token = JwtUtil.encrypt(new HashMap<>() {
             {
-                this.setUserId(1L);
+                put("uid", "11");
             }
+        }, "sdasfdsgjsapfjio", 12800);
 
-        });
-        System.out.println(token);
-
-        JwtUtil.decrypt("sdasfdsgjsapfjio", token);
+        System.out.println(JwtUtil.decrypt("sdasfdsgjsapfjio", token));
     }
 
     @Test

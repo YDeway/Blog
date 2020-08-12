@@ -3,7 +3,6 @@ package com.deway.blog.tool;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
 import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
 import java.util.Base64;
 
@@ -20,28 +19,23 @@ public class Pbkdf2Util {
 
     public static final String PBKDF2_ALGORITHM = "PBKDF2WithHmacSHA1";
 
-    public static final String RANDOM_ALGORITHM = "SHA1PRNG";
-
-    public static final int SALT_BYTE_SIZE = 16;
-
     public static final int HASH_BIT_SIZE = 64 * 8;
 
     public static final int PBKDF2_ITERATIONS = 1024;
 
-    public static String encrypt(String pwd, byte[] salt) throws NoSuchAlgorithmException, InvalidKeySpecException {
+    public static String encrypt(String pwd, byte[] salt) throws InvalidKeySpecException {
         var pbeKeySpec = new PBEKeySpec(pwd.toCharArray(), salt, PBKDF2_ITERATIONS, HASH_BIT_SIZE);
-        var encoded = SecretKeyFactory
-                .getInstance(PBKDF2_ALGORITHM)
-                .generateSecret(pbeKeySpec)
-                .getEncoded();
+        byte[] encoded;
+        try {
+            encoded = SecretKeyFactory
+                    .getInstance(PBKDF2_ALGORITHM)
+                    .generateSecret(pbeKeySpec)
+                    .getEncoded();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
         return Base64.getEncoder().encodeToString(encoded);
-    }
-
-    public static String randomSalt() throws NoSuchAlgorithmException {
-        var random = SecureRandom.getInstance(RANDOM_ALGORITHM);
-        var salt = new byte[SALT_BYTE_SIZE];
-        random.nextBytes(salt);
-        return Base64.getEncoder().encodeToString(salt);
     }
 
 }
