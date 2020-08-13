@@ -3,7 +3,7 @@ package com.deway.blog.controller;
 import com.deway.blog.entiry.Blog;
 import com.deway.blog.service.BlogService;
 import com.deway.blog.tool.R;
-import com.deway.blog.tool.HttpCode;
+import com.deway.blog.tool.HttpStatus;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,7 +23,7 @@ public class BlogController {
 
     @GetMapping
     public R<List<Blog>> listBlog() {
-        return  R.response(HttpCode.SUCCESS, blogService.list());
+        return  R.response(HttpStatus.SUCCESS, blogService.list());
     }
 
 }

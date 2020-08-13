@@ -1,6 +1,6 @@
 package com.deway.blog.controller;
 
-import com.deway.blog.tool.HttpCode;
+import com.deway.blog.tool.HttpStatus;
 import com.deway.blog.tool.R;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,7 +23,7 @@ public class MainController {
     @GetMapping
     public R<Properties> info(HttpServletRequest request) {
         request.getSession();
-        return R.response(HttpCode.SUCCESS, System.getProperties());
+        return R.response(HttpStatus.SUCCESS, System.getProperties());
     }
 
 

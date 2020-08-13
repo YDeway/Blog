@@ -16,7 +16,7 @@ public class AccessToken implements Serializable {
 
     private Long id;
 
-    private Long uid;
+    private String uid;
 
     private Long exp;
 
@@ -31,6 +31,7 @@ public class AccessToken implements Serializable {
         public static final String TOKEN = "token";
         public static final String SALT = "salt";
         public static final String UID = "uid";
+        public static final String AUTHORIZATION = "Authorization";
     }
 
 }

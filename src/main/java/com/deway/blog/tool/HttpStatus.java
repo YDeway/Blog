@@ -9,7 +9,7 @@ import lombok.Getter;
  */
 
 @Getter
-public enum HttpCode {
+public enum HttpStatus {
 
     /**
      * SUCCESS
@@ -40,11 +40,14 @@ public enum HttpCode {
     private final String message;
     private final int code;
 
-    HttpCode(int code, String message) {
+    HttpStatus(int code, String message) {
         this.code = code;
         this.message = message;
     }
 
 
-
+    @Override
+    public String toString() {
+        return code + "  " + message;
+    }
 }

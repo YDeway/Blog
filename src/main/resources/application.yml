@@ -69,7 +69,10 @@ spring:
       driver-class-name: org.mariadb.jdbc.Driver
       url: jdbc:mariadb://10.62.201.102:3306/buck2
 
+  #单位秒
   session-expire: 3000
+
+  authorization: true
 
   redis:
     host: www.touchim.cn
