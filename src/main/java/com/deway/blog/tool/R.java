@@ -1,5 +1,7 @@
 package com.deway.blog.tool;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import java.io.Serializable;
@@ -20,4 +22,7 @@ public class R<T> implements Serializable {
         return new R<>(httpStatus.getCode(), httpStatus.getMessage(), data);
     }
 
+    public String toResponseBody() throws JsonProcessingException {
+        return new ObjectMapper().writeValueAsString(this);
+    }
 }

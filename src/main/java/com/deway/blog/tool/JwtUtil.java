@@ -23,7 +23,7 @@ public class JwtUtil {
      * @param expire 过期时间，单位秒
      * @return jwt字符串
      */
-    public static String encrypt(@NonNull Map<String, String> kv, String salt, int expire) {
+    public static String encrypt(@NonNull Map<String, String> kv, String salt, long expire) {
 
         long now = System.currentTimeMillis();
 

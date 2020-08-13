@@ -58,16 +58,16 @@ spring:
 
   datasource:
     user:
-      username: wcdmaria
-      password: wistron888
+      username: root
+      password: 2012dwDW
       driver-class-name: org.mariadb.jdbc.Driver
-      url: jdbc:mariadb://10.62.201.102:3306/buck
+      url: jdbc:mariadb://www.touchim.cn/auth
 
     blog:
-      username: wcdmaria
-      password: wistron888
+      username: root
+      password: 2012dwDW
       driver-class-name: org.mariadb.jdbc.Driver
-      url: jdbc:mariadb://10.62.201.102:3306/buck2
+      url: jdbc:mariadb://10.62.201.102:3306/blog
 
   #单位秒
   session-expire: 3000

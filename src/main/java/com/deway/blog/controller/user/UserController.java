@@ -1,11 +1,11 @@
 package com.deway.blog.controller.user;
 
+import com.deway.blog.config.AuthTokenConfig;
 import com.deway.blog.entiry.auth.AccessToken;
 import com.deway.blog.entiry.auth.User;
 import com.deway.blog.service.UserService;
 import com.deway.blog.tool.*;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
+import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import redis.clients.jedis.Jedis;
 import java.util.HashMap;
@@ -16,15 +16,15 @@ import java.util.HashMap;
  * @author Deway
  */
 @RestController
+@AllArgsConstructor
 @RequestMapping("/user")
 public class UserController {
 
-    private UserService userService;
+    private final UserService userService;
 
-    private Jedis redis;
+    private final Jedis redis;
 
-    @Value("${spring.session-expire}")
-    private int sessionExpire;
+    private final AuthTokenConfig config;
 
     /**
      * 现在的做法则是可在多个地点同时登录
@@ -44,12 +44,13 @@ public class UserController {
                 var salt = RandomSalt.randomSalt();
                 var m = new HashMap<String, String>(2);
                 m.put(AccessToken.Constant.UID, user.getUserId());
-                token = JwtUtil.encrypt(m, salt, sessionExpire / 2);
+                token = JwtUtil.encrypt(m, salt, config.getSessionExpire() / 2);
                 m.clear();
                 m.put(AccessToken.Constant.SALT, salt);
                 m.put(AccessToken.Constant.TOKEN, token);
-                redis.hset(user.getUserId(), m);
-                redis.expire(user.getUserId(), sessionExpire / 2);
+                    redis.hset(user.getUserId(), m);
+                //数据大时会出现数值异常
+                redis.expire(user.getUserId(), config.getSessionExpire().intValue() / 2);
             }
             else {
                 return R.response(HttpStatus.UNAUTHORIZED, "unknown username or invalid password");
@@ -76,13 +77,6 @@ public class UserController {
             e.printStackTrace();
         }
         return R.response(HttpStatus.INTERNAL_SERVER_ERROR, "unknown server error!");
-    }
-
-
-    @Autowired
-    private void init(UserService userService, Jedis redis) {
-        this.redis = redis;
-        this.userService = userService;
     }
 
 }
