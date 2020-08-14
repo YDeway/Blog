@@ -5,17 +5,23 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 
 
+/**
+ *
+ *
+ * @author Deway
+ */
 @Repository
 @Getter
 public class AuthTokenConfig {
 
-    @Value("${spring.authorization}")
+    @Value("${spring.auth.authorization}")
     private boolean authorization;
 
-    @Value("${spring.session-expire}")
-    private Long sessionExpire;
+    @Value("${spring.auth.session-expire}")
+    private int sessionExpire;
 
-
+    @Value("${spring.auth.multi-sign-on}")
+    private boolean multiSignOn;
 
 
 }

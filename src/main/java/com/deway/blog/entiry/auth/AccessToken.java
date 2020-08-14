@@ -14,8 +14,6 @@ public class AccessToken implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private Long id;
-
     private String uid;
 
     private Long exp;
@@ -26,12 +24,5 @@ public class AccessToken implements Serializable {
 
     @Reserved
     private String scope;
-
-    public static class Constant {
-        public static final String TOKEN = "token";
-        public static final String SALT = "salt";
-        public static final String UID = "uid";
-        public static final String AUTHORIZATION = "Authorization";
-    }
 
 }

@@ -67,12 +67,12 @@ spring:
       username: root
       password: 2012dwDW
       driver-class-name: org.mariadb.jdbc.Driver
-      url: jdbc:mariadb://10.62.201.102:3306/blog
+      url: jdbc:mariadb://www.touchim.cn/blog
 
-  #单位秒
-  session-expire: 3000
-
-  authorization: true
+  auth:
+    session-expire: 3000 #单位秒
+    authorization: true
+    multi-sign-on: true
 
   redis:
     host: www.touchim.cn

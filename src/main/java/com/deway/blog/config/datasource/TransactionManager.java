@@ -9,7 +9,7 @@ import javax.sql.DataSource;
 
 /**
  * @todo 能否一个TransactionManager管理多个数据源？对TransactionManager了解很少！
- *       多数据源操作在同一个事务里完成怎么做？
+ *       多数据源操作在同一个事务里完成怎么做？而且并没有看到预期的事务效果
  *
  * @author Deway
  */

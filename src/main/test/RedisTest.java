@@ -17,7 +17,7 @@ public class RedisTest {
 
     @Test
     public void xx() {
-        System.out.println(redis.hget("sda", ""));
+        System.out.println(redis.expire("sdas",1000));
     }
 
 }

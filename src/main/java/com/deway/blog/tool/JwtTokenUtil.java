@@ -3,9 +3,7 @@ package com.deway.blog.tool;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.TokenExpiredException;
-import com.deway.blog.entiry.auth.AccessToken;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.lang.NonNull;
 import java.util.*;
 
 /**
@@ -13,37 +11,26 @@ import java.util.*;
  *
  * @author Deway
  */
-public class JwtUtil {
+public class JwtTokenUtil {
 
     /**
      * jwt生成器
      *
      * @param kv 需要保存到jwt的数据
-     * @param salt 加密密钥
-     * @param expire 过期时间，单位秒
+     * @param salt 加密随机salt
      * @return jwt字符串
      */
-    public static String encrypt(@NonNull Map<String, String> kv, String salt, long expire) {
-
-        long now = System.currentTimeMillis();
-
-        var token = JWT.create()
-                .withIssuedAt(new Date(now))
-                .withExpiresAt(new Date(now + expire * 1000));
-
+    public static String encrypt(Map<String, String> kv, String salt) {
+        var token = JWT.create();
         kv.forEach(token::withClaim);
-
         return token.sign(Algorithm.HMAC256(salt));
-
     }
 
-    public static AccessToken decrypt(String token) throws Exception {
+    public static <T> T decrypt(String token, Class<T> clazz) throws Exception {
         var decode = JWT.decode(token);
         var payload = Base64.getDecoder().decode(decode.getPayload());
-
         var mapper = new ObjectMapper();
-
-        return mapper.readValue(payload, AccessToken.class);
+        return mapper.readValue(payload, clazz);
     }
 
     /**

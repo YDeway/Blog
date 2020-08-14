@@ -1,4 +1,4 @@
-import com.deway.blog.tool.JwtUtil;
+import com.deway.blog.tool.JwtTokenUtil;
 import org.junit.Test;
 import java.time.LocalDateTime;
 import java.util.HashMap;
@@ -14,13 +14,7 @@ public class JwtTest {
     public void decrypt() throws Exception {
 
 
-        var token = JwtUtil.encrypt(new HashMap<>() {
-            {
-                put("uid", "11");
-            }
-        }, "sdasfdsgjsapfjio", 12800);
-        JwtUtil.validate("w.w.w", "");
-        System.out.println(JwtUtil.decrypt(token));
+
     }
 
 

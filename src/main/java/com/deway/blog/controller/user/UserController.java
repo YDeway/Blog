@@ -1,13 +1,13 @@
 package com.deway.blog.controller.user;
 
 import com.deway.blog.config.AuthTokenConfig;
-import com.deway.blog.entiry.auth.AccessToken;
 import com.deway.blog.entiry.auth.User;
 import com.deway.blog.service.UserService;
 import com.deway.blog.tool.*;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import redis.clients.jedis.Jedis;
+
 import java.util.HashMap;
 
 /**
@@ -27,36 +27,35 @@ public class UserController {
     private final AuthTokenConfig config;
 
     /**
-     * 现在的做法则是可在多个地点同时登录
      *
-     * @todo 考虑多线程情况下同一个用户同时登录，有点小问题,虽然概率很小，redis服务是多线程共享的，第一个if里。
-     *        引入redis增加了系统的复杂度，实际上这个项目根本没有必要使用redis
+     * @todo 考虑多线程情况下同一个用户同时登录
      * @todo 中文字符处理
      */
     @PostMapping("/login")
     public R<?> login(@RequestBody User user) {
         var token = "";
-        if(redis.exists(user.getUserId())) {
-            token = redis.hget(user.getUserId(), AccessToken.Constant.TOKEN);
+        //允许重复登录
+        //@todo 然而多个地方会共享这个token，每个地方都会共享过期时间
+        if (redis.exists(user.getUserId()) && config.isMultiSignOn()) {
+            token = redis.hget(user.getUserId(),JwtConstant.TOKEN);
+            redis.expire(user.getUserId(), config.getSessionExpire());
+        }
+        //不允许重复登录或者未登录现登录
+        else if(userService.login(user)) {
+            var hm = new HashMap<String, String>(1);
+            hm.put(JwtConstant.UID, user.getUserId());
+            var salt = RandomSalt.randomSalt();
+            token = JwtTokenUtil.encrypt(hm, salt);
+
+            hm.clear();
+            hm.put(JwtConstant.TOKEN, token);
+            hm.put(JwtConstant.SALT, salt);
+            redis.hset(user.getUserId(), hm);
+            redis.expire(user.getUserId(), config.getSessionExpire());
         }
         else {
-            if(userService.login(user)) {
-                var salt = RandomSalt.randomSalt();
-                var m = new HashMap<String, String>(2);
-                m.put(AccessToken.Constant.UID, user.getUserId());
-                token = JwtUtil.encrypt(m, salt, config.getSessionExpire() / 2);
-                m.clear();
-                m.put(AccessToken.Constant.SALT, salt);
-                m.put(AccessToken.Constant.TOKEN, token);
-                    redis.hset(user.getUserId(), m);
-                //数据大时会出现数值异常
-                redis.expire(user.getUserId(), config.getSessionExpire().intValue() / 2);
-            }
-            else {
-                return R.response(HttpStatus.UNAUTHORIZED, "unknown username or invalid password");
-            }
+            return R.response(HttpStatus.UNAUTHORIZED, "unknown username or invalid password");
         }
-
         return R.response(HttpStatus.SUCCESS, token);
     }
 
