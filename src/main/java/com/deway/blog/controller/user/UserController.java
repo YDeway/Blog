@@ -35,7 +35,7 @@ public class UserController {
     public R<?> login(@RequestBody User user) {
         var token = "";
         //允许重复登录
-        //@todo 然而多个地方会共享这个token，每个地方都会共享过期时间
+        //@todo 然而多个地方会共享这个token，每个地方都会共享过期时间，还会共享退出
         if (redis.exists(user.getUserId()) && config.isMultiSignOn()) {
             token = redis.hget(user.getUserId(),JwtConstant.TOKEN);
             redis.expire(user.getUserId(), config.getSessionExpire());
