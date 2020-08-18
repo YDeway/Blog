@@ -27,7 +27,7 @@ public class AuthInterceptor implements Interceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        if(!config.isAuthorizated()) { return true;}
+        if(!config.isAuthorized()) { return true;}
         var b = false;
         var reqToken = request.getHeader(JwtConstant.AUTHORIZATION);
         if(reqToken != null) {
@@ -56,7 +56,7 @@ public class AuthInterceptor implements Interceptor {
     @Override
     public void afterRegistry(InterceptorRegistration registration) {
         registration.addPathPatterns("/**");
-        registration.excludePathPatterns("/", "/user/**", "/swagger-ui.html/**", "/webjars/**", "/swagger-resources/**");
+        registration.excludePathPatterns("/","/user/**", "/swagger-ui.html/**", "/webjars/**", "/swagger-resources/**");
     }
 
 }

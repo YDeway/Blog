@@ -40,5 +40,14 @@ public class SpringMvcConfig implements WebMvcConfigurer{
         });
     }
 
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**")
+        .allowedOrigins("*")
+        .allowedMethods("GET", "POST")
+        .allowedHeaders("*")
+        .exposedHeaders("Access-Control-Allow-Origin")
+        .allowCredentials(true);
+    }
 
 }

@@ -15,7 +15,7 @@ import org.springframework.stereotype.Repository;
 public class AuthTokenConfig {
 
     @Value("${spring.auth.authorization}")
-    private boolean authorizated;
+    private boolean authorized;
 
     @Value("${spring.auth.session-expire}")
     private int sessionExpire;
