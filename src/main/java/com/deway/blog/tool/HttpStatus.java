@@ -26,6 +26,11 @@ public enum HttpStatus {
     UNAUTHORIZED(401, "UNAUTHORIZED"),
 
     /**
+     * 404 Not Found
+     */
+    NOT_FOUND(404, "NOT_FOUND"),
+
+    /**
      * RESOURCE_CONFLICT
      */
     CONFLICT(409, "RESOURCE CONFLICT"),

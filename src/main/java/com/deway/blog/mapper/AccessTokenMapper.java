@@ -7,4 +7,5 @@ import com.deway.blog.entiry.auth.AccessToken;
 @TargetDataSource(dataSource = DynamicDataSource.USER_DATASOURCE)
 public interface AccessTokenMapper {
 
+
 }

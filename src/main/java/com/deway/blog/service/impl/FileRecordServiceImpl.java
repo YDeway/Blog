@@ -13,7 +13,7 @@ public class FileRecordServiceImpl implements FileRecordService {
     private final FileRecordMapper fileMapper;
 
     @Override
-    public Boolean insert(FileRecord file) {
-        return fileMapper.insert(file);
+    public Boolean create(FileRecord file) {
+        return fileMapper.create(file);
     }
 }

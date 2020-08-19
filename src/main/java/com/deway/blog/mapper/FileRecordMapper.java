@@ -7,6 +7,6 @@ import com.deway.blog.entiry.FileRecord;
 @TargetDataSource(dataSource = DynamicDataSource.BLOG_DATASOURCE)
 public interface FileRecordMapper {
 
-    boolean insert(FileRecord file);
+    boolean create(FileRecord file);
 
 }

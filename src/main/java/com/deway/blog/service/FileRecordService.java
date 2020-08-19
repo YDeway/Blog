@@ -9,7 +9,7 @@ import com.deway.blog.entiry.FileRecord;
  */
 public interface FileRecordService {
 
-    Boolean insert(FileRecord file);
+    Boolean create(FileRecord file);
 
 
 }

@@ -71,7 +71,7 @@ spring:
 
   auth:
     session-expire: 3000 # 单位秒
-    authorization: true
+    authorization: false
     multi-sign-on: false # @todo 建议false，多点登录我还没想到好的解决方案 考虑文件系统的索引结点方案
 
   upload:

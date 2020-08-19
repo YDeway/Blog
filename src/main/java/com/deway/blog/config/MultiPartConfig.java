@@ -28,6 +28,7 @@ public class MultiPartConfig {
     private List<String> allowedType;
 
 
+
     @Bean("multipartResolver")
     protected CommonsMultipartResolver multipartResolver() {
         var resolver = new CommonsMultipartResolver();

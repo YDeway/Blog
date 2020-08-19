@@ -10,7 +10,7 @@
     id, `path`, create_time
   </sql>
 
-  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.deway.blog.entiry.FileRecord" useGeneratedKeys="true" >
+  <insert id="create" keyColumn="id" keyProperty="id" parameterType="com.deway.blog.entiry.FileRecord" useGeneratedKeys="true" >
     insert into file (`path`)
     values (#{path,jdbcType=VARCHAR})
   </insert>
