@@ -74,6 +74,15 @@ spring:
     authorization: true
     multi-sign-on: false # @todo 建议false，多点登录我还没想到好的解决方案 考虑文件系统的索引结点方案
 
+  upload:
+    path: F:/Idea Project/upload/ #空格路径，程序一旦正式运行就不要改
+    max-per-file: 3145728
+    allowed-type:
+      - jpeg
+      - png
+      - bmp
+      - jpg
+
   redis:
     host: www.touchim.cn
     port: 6379

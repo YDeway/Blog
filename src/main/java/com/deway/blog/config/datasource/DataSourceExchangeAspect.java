@@ -7,7 +7,9 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 
 /**
- * 程序运行时实时切换Mapper对应的数据源
+ * 程序运行时实时切换Mapper对应的数据源,应该将注解放到Mapper上
+ *
+ *
  * @author deway
  */
 @Aspect

@@ -55,7 +55,9 @@ public class UserController {
         else {
             return R.response(HttpStatus.UNAUTHORIZED, "unknown username or invalid password");
         }
-        return R.response(HttpStatus.SUCCESS, token);
+        var resp = new HashMap<String, String>(1);
+        resp.put("token", token);
+        return R.response(HttpStatus.SUCCESS, resp);
     }
 
     /**

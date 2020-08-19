@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.deway.blog.mapper.FileRecordMapper">
+  <resultMap id="BaseResultMap" type="com.deway.blog.entiry.FileRecord">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="path" jdbcType="VARCHAR" property="path" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, `path`, create_time
+  </sql>
+
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.deway.blog.entiry.FileRecord" useGeneratedKeys="true" >
+    insert into file (`path`)
+    values (#{path,jdbcType=VARCHAR})
+  </insert>
+
+
+</mapper>
