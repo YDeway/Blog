@@ -1,6 +1,6 @@
 package com.deway.blog.controller;
 
-import com.deway.blog.entiry.Blog;
+import com.deway.blog.entity.Blog;
 import com.deway.blog.service.BlogService;
 import com.deway.blog.tool.R;
 import com.deway.blog.tool.HttpStatus;

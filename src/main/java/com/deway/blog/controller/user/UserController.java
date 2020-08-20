@@ -1,7 +1,7 @@
 package com.deway.blog.controller.user;
 
 import com.deway.blog.config.AuthTokenConfig;
-import com.deway.blog.entiry.auth.User;
+import com.deway.blog.entity.auth.User;
 import com.deway.blog.service.UserService;
 import com.deway.blog.tool.*;
 import lombok.AllArgsConstructor;

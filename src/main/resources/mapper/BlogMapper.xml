@@ -5,7 +5,7 @@
         id as id, author_id as authorId, create_time as createTime, update_time as updateTime,
         category as category, favour as favour, content as content, title as title
     </sql>
-    <select id="find" resultType="com.deway.blog.entiry.Blog">
+    <select id="find" resultType="com.deway.blog.entity.Blog">
         select <include refid="baseMap"/>
         from blog
         <where>

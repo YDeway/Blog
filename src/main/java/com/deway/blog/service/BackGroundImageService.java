@@ -1,6 +1,6 @@
 package com.deway.blog.service;
 
-import com.deway.blog.entiry.BackGroundImage;
+import com.deway.blog.entity.BackGroundImage;
 
 public interface BackGroundImageService {
 

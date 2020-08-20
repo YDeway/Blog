@@ -1,4 +1,4 @@
-package com.deway.blog.entiry.auth;
+package com.deway.blog.entity.auth;
 
 import lombok.Data;
 import java.io.Serializable;

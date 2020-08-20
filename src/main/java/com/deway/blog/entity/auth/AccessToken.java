@@ -1,4 +1,4 @@
-package com.deway.blog.entiry.auth;
+package com.deway.blog.entity.auth;
 
 import java.io.Serializable;
 import com.deway.blog.tool.Reserved;

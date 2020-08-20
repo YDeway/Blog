@@ -1,8 +1,8 @@
 package com.deway.blog.service.impl;
 
 import com.deway.blog.config.datasource.TransactionManager;
-import com.deway.blog.entiry.auth.AccessToken;
-import com.deway.blog.entiry.auth.User;
+import com.deway.blog.entity.auth.AccessToken;
+import com.deway.blog.entity.auth.User;
 import com.deway.blog.mapper.UserMapper;
 import com.deway.blog.service.UserService;
 import com.deway.blog.tool.Pbkdf2Util;
@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import redis.clients.jedis.Jedis;
 
-import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 
 /**

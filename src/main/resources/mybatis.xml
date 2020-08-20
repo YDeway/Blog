@@ -9,6 +9,12 @@
 
 
 
+    <typeAliases >
+        <package name="com.deway.blog.entity"/>
+        <package name="com.deway.blog.entity.auth"/>
+        <package name="com.deway.blog.mapper"/>
+    </typeAliases>
+
 
 
 

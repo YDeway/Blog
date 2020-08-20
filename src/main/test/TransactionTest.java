@@ -1,5 +1,5 @@
 import com.deway.blog.config.GlobalConfig;
-import com.deway.blog.entiry.auth.User;
+import com.deway.blog.entity.auth.User;
 import com.deway.blog.service.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;

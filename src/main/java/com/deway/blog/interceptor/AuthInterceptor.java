@@ -1,7 +1,7 @@
 package com.deway.blog.interceptor;
 
 import com.deway.blog.config.AuthTokenConfig;
-import com.deway.blog.entiry.auth.AccessToken;
+import com.deway.blog.entity.auth.AccessToken;
 import com.deway.blog.tool.HttpStatus;
 import com.deway.blog.tool.JwtConstant;
 import com.deway.blog.tool.JwtTokenUtil;
@@ -55,8 +55,10 @@ public class AuthInterceptor implements Interceptor {
 
     @Override
     public void afterRegistry(InterceptorRegistration registration) {
-        registration.addPathPatterns("/**");
-        registration.excludePathPatterns("/","/user/**", "/swagger-ui.html/**", "/webjars/**", "/swagger-resources/**");
+        registration.addPathPatterns("/**")
+            .excludePathPatterns("/","/user/**", "/swagger-ui.html/**", "/webjars/**", "/swagger-resources/**")
+            //数字越小越先执行，似乎负数也行，没做太多的验证
+            .order(-1);
     }
 
 }

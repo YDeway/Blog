@@ -1,4 +1,4 @@
-package com.deway.blog.entiry;
+package com.deway.blog.entity;
 
 import java.io.Serializable;
 import java.util.Date;

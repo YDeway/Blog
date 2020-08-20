@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.deway.blog.mapper.UserMapper">
-    <resultMap id="BaseResultMap" type="com.deway.blog.entiry.auth.User">
+    <resultMap id="BaseResultMap" type="com.deway.blog.entity.auth.User">
         <id column="User_id" jdbcType="BIGINT" property="id" />
         <result column="User_name" jdbcType="VARCHAR" property="name" />
         <result column="User_password" jdbcType="VARCHAR" property="password" />
@@ -22,7 +22,7 @@
     </select>
 
     <!-- 动态SQL应该会去掉多余的","、"and"等符号，但写法我忘了-->
-    <select id="find" resultType="com.deway.blog.entiry.auth.User">
+    <select id="find" resultType="com.deway.blog.entity.auth.User">
         select *
         from user
         <where>

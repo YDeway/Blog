@@ -1,7 +1,7 @@
 package com.deway.blog.service.impl;
 
 import com.deway.blog.config.datasource.TransactionManager;
-import com.deway.blog.entiry.Blog;
+import com.deway.blog.entity.Blog;
 import com.deway.blog.mapper.BlogMapper;
 import com.deway.blog.service.BlogService;
 import lombok.AllArgsConstructor;

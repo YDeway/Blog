@@ -1,4 +1,4 @@
-package com.deway.blog.entiry;
+package com.deway.blog.entity;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -16,8 +16,10 @@ public class BackGroundImage implements Serializable {
 
     private Long id;
 
-    private Long filePath;
+    private Long fileRecordId;
 
     private Date createTime;
+
+    private FileRecord fileRecord;
 
 }

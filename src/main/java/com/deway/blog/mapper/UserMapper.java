@@ -2,7 +2,7 @@ package com.deway.blog.mapper;
 
 import com.deway.blog.config.datasource.DynamicDataSource;
 import com.deway.blog.config.datasource.TargetDataSource;
-import com.deway.blog.entiry.auth.User;
+import com.deway.blog.entity.auth.User;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
