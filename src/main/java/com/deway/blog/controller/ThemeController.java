@@ -20,7 +20,7 @@ public class ThemeController {
     private final FileUtil fileUtil;
     private final BackGroundImageService imageService;
 
-    @PostMapping("/bgimage")
+    @PostMapping("/image")
     public R<?> bgImageUpload(@RequestParam("file") MultipartFile file, BackGroundImage image) {
         var filePathId = fileUtil.saveFile(file);
         if(filePathId != null) {

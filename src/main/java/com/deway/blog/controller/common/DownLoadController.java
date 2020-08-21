@@ -5,15 +5,11 @@ import com.deway.blog.tool.HttpStatus;
 import com.deway.blog.tool.R;
 import com.deway.blog.tool.instance.FileUtil;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
-
 /**
  *
  * @author Deway
@@ -31,8 +27,8 @@ public class DownLoadController {
      * @todo 响应文件的mime类型
      *
      */
-    @GetMapping
-    public void downLoadBgImage(@RequestParam("id") Long id, HttpServletResponse resp) throws IOException {
+    @GetMapping("/{id}")
+    public void downLoadBgImage(@PathVariable("id") Long id, HttpServletResponse resp) throws IOException {
         var ops = resp.getOutputStream();
         try {
             fileUtil.readFile(fileService.getFilePath(id), ops);

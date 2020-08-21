@@ -36,7 +36,9 @@ public class FileUtil {
                     .getEncoder()
                     .encodeToString((System.currentTimeMillis() + originName)
                     .getBytes())
-                    .replace('/', 'l');
+                    .replace('/', 'l')
+                    .replace('+', 'b')
+                    .replace('=', 'q');
 
                 absolutePath += "."  + detect.substring(detect.indexOf("/") + 1);
                 file.transferTo(new File(config.getBaseUploadPath() + absolutePath));
