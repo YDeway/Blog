@@ -1,15 +1,17 @@
 package com.deway.blog.controller.common;
 
 import com.deway.blog.service.FileRecordService;
-import com.deway.blog.tool.HttpStatus;
-import com.deway.blog.tool.R;
-import com.deway.blog.tool.instance.FileUtil;
 import lombok.AllArgsConstructor;
+import org.apache.tika.Tika;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.util.HashMap;
 /**
  *
  * @author Deway
@@ -19,7 +21,6 @@ import java.util.HashMap;
 @RequestMapping("/download")
 public class DownLoadController {
 
-    private final FileUtil fileUtil;
     private final FileRecordService fileService;
 
     /**
@@ -28,24 +29,30 @@ public class DownLoadController {
      *
      */
     @GetMapping("/{id}")
-    public void downLoadBgImage(@PathVariable("id") Long id, HttpServletResponse resp) throws IOException {
-        var ops = resp.getOutputStream();
+    public ResponseEntity<?> downLoad(@PathVariable("id") Long id) {
+        var filePath = fileService.getFilePath(id);
+        byte[] bytes = new byte[0];
         try {
-            fileUtil.readFile(fileService.getFilePath(id), ops);
+            bytes = new FileInputStream(new File(filePath)).readAllBytes();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        catch (IOException e) {
-            resp.setStatus(404);
-            resp.setContentType("application/json;charset=UTF-8");
-            ops.write(R.
-                response(HttpStatus.NOT_FOUND, new HashMap<>(1) {
-                    {
-                        put("message", "服务器找不到文件或者其他IO异常，但老子就全当找不到");
-                    }
-                })
-                .toResponseBody()
-                .getBytes(StandardCharsets.UTF_8)
-            );
-        }
+        var type = MediaType.parseMediaType(new Tika().detect(bytes));
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .contentLength(bytes.length)
+                .contentType(type)
+                .body(bytes);
     }
 
+    @GetMapping("xxxx")
+    public void XX(HttpServletResponse resp) throws IOException {
+        resp.getWriter().write("草拟吗");
+
+    }
+    @GetMapping("yyyy")
+    public String yyy(HttpServletResponse resp) {
+        return "草拟吗";
+
+    }
 }

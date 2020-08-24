@@ -13,7 +13,7 @@ public class TikaTest {
         var detect = tika.detect(file);
 
 
-        System.out.println(detect.substring(detect.indexOf("/") + 1));
+        System.out.println(detect);
 
 
     }

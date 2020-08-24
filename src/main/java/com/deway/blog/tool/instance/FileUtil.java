@@ -61,6 +61,7 @@ public class FileUtil {
      * @param ops file待被写出的流
      * @throws IOException 文件未找到、其他读写IO异常
      */
+    @Deprecated
     public void readFile(String path, OutputStream ops) throws IOException {
         try (var fis = new FileInputStream(path)){
             var b = new byte[1024 * 1024];

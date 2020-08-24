@@ -5,6 +5,7 @@ import com.deway.blog.entity.auth.User;
 import com.deway.blog.service.UserService;
 import com.deway.blog.tool.*;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import redis.clients.jedis.Jedis;
 import java.util.HashMap;
@@ -57,7 +58,7 @@ public class UserController {
         }
         var resp = new HashMap<String, String>(1);
         resp.put("token", token);
-        return R.response(HttpStatus.SUCCESS, resp);
+        return R.response(HttpStatus.OK, resp);
     }
 
     /**
@@ -71,7 +72,7 @@ public class UserController {
         }
         try {
             if(userService.create(user)) {
-                return R.response(HttpStatus.SUCCESS, "success");
+                return R.response(HttpStatus.OK, "success");
             }
         } catch (Exception e) {
             e.printStackTrace();

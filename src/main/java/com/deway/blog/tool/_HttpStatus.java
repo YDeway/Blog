@@ -9,7 +9,8 @@ import lombok.Getter;
  */
 
 @Getter
-public enum HttpStatus {
+@Deprecated(since = "Spring 自带的有")
+public enum _HttpStatus {
 
     /**
      * SUCCESS
@@ -45,7 +46,7 @@ public enum HttpStatus {
     private final String message;
     private final int code;
 
-    HttpStatus(int code, String message) {
+    _HttpStatus(int code, String message) {
         this.code = code;
         this.message = message;
     }

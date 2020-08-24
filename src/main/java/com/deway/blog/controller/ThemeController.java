@@ -2,10 +2,11 @@ package com.deway.blog.controller;
 
 import com.deway.blog.entity.BackGroundImage;
 import com.deway.blog.service.BackGroundImageService;
-import com.deway.blog.tool.HttpStatus;
+import com.deway.blog.tool._HttpStatus;
 import com.deway.blog.tool.R;
 import com.deway.blog.tool.instance.FileUtil;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -26,10 +27,10 @@ public class ThemeController {
         if(filePathId != null) {
             image.setFileRecordId(filePathId);
             if(imageService.create(image)) {
-                return R.response(HttpStatus.SUCCESS, "");
+                return R.response(HttpStatus.OK, "");
             }
         }
-        return R.response(HttpStatus.FAILURE, "");
+        return R.response(HttpStatus.BAD_REQUEST, "");
     }
 
 }

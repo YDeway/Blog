@@ -2,11 +2,11 @@ package com.deway.blog.interceptor;
 
 import com.deway.blog.config.AuthTokenConfig;
 import com.deway.blog.entity.auth.AccessToken;
-import com.deway.blog.tool.HttpStatus;
 import com.deway.blog.tool.JwtConstant;
 import com.deway.blog.tool.JwtTokenUtil;
 import com.deway.blog.tool.R;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistration;
 import redis.clients.jedis.Jedis;
@@ -41,7 +41,7 @@ public class AuthInterceptor implements Interceptor {
         }
 
         if(!b) {
-            response.setStatus(HttpStatus.UNAUTHORIZED.getCode());
+            response.setStatus(HttpStatus.UNAUTHORIZED.value());
             var writer = response.getWriter();
             writer.write(
                      R
