@@ -8,7 +8,6 @@ import springfox.documentation.service.Contact;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
-
 import java.util.ArrayList;
 
 /**
@@ -35,7 +34,7 @@ public class SwaggerConfig {
                 "Api Documentation",
                 "1.0",
                 "urn:tos",
-                new Contact("buck", "www.touchim.cn", "790721085@qq.com"),
+                new Contact("buck", "http://www.touchim.cn", "790721085@qq.com"),
                 "Apache 2.0",
                 "http://www.apache.org/licenses/LICENSE-2.0",
                 new ArrayList<>());

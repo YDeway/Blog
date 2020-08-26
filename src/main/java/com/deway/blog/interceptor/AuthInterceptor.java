@@ -12,10 +12,11 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistration
 import redis.clients.jedis.Jedis;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.nio.charset.StandardCharsets;
 
 /**
  * 登录验证<br>
- * 被排除的请求路径处理不会刷新token过期时间
+ * @todo 被排除的请求路径处理不会刷新token过期时间
  * @author Deway
  */
 @Component
@@ -42,6 +43,7 @@ public class AuthInterceptor implements Interceptor {
 
         if(!b) {
             response.setStatus(HttpStatus.UNAUTHORIZED.value());
+            response.setCharacterEncoding(StandardCharsets.UTF_8.name());
             var writer = response.getWriter();
             writer.write(
                      R

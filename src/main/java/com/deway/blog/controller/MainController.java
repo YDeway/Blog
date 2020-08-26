@@ -1,12 +1,12 @@
 package com.deway.blog.controller;
 
 import com.deway.blog.tool.R;
+import io.swagger.annotations.Api;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.context.WebApplicationContext;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Properties;
 
@@ -16,6 +16,7 @@ import java.util.Properties;
 @RestController
 @RequestMapping("/")
 @AllArgsConstructor
+@Api(value = "main controller", tags = {"返回一些信息"})
 public class MainController {
 
     @GetMapping

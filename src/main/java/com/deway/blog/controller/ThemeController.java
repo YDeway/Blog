@@ -2,7 +2,6 @@ package com.deway.blog.controller;
 
 import com.deway.blog.entity.BackGroundImage;
 import com.deway.blog.service.BackGroundImageService;
-import com.deway.blog.tool._HttpStatus;
 import com.deway.blog.tool.R;
 import com.deway.blog.tool.instance.FileUtil;
 import lombok.AllArgsConstructor;
@@ -22,15 +21,15 @@ public class ThemeController {
     private final BackGroundImageService imageService;
 
     @PostMapping("/image")
-    public R<?> bgImageUpload(@RequestParam("file") MultipartFile file, BackGroundImage image) {
+    public R<?> imageUpload(@RequestParam("file") MultipartFile file, BackGroundImage image) {
         var filePathId = fileUtil.saveFile(file);
         if(filePathId != null) {
             image.setFileRecordId(filePathId);
             if(imageService.create(image)) {
-                return R.response(HttpStatus.OK, "");
+                return R.response(HttpStatus.OK, null);
             }
         }
-        return R.response(HttpStatus.BAD_REQUEST, "");
+        return R.response(HttpStatus.BAD_REQUEST, null);
     }
 
 }

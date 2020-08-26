@@ -29,7 +29,6 @@ public class UserController {
     /**
      *
      * @todo 考虑多线程情况下同一个用户同时登录
-     * @todo 中文字符处理
      */
     @PostMapping("/login")
     public R<?> login(@RequestBody User user) {
@@ -54,10 +53,13 @@ public class UserController {
             redis.expire(user.getUserId(), config.getSessionExpire());
         }
         else {
-            return R.response(HttpStatus.UNAUTHORIZED, "unknown username or invalid password");
+            return R.response(HttpStatus.FORBIDDEN, "unknown username or invalid password");
         }
-        var resp = new HashMap<String, String>(1);
+
+        var resp = new HashMap<String, String>(2);
         resp.put("token", token);
+        resp.put("expire", config.getSessionExpire().toString());
+
         return R.response(HttpStatus.OK, resp);
     }
 

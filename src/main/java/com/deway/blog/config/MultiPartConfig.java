@@ -17,17 +17,15 @@ import java.util.List;
 @Configuration
 public class MultiPartConfig {
 
-    //@todo 原生@Value不支持直接这么做
     @Value("${spring.upload.max-per-file}")
     private long maxPerFileSize;
 
     @Value("${spring.upload.path}")
     private String baseUploadPath;
 
+    //@todo 原生@Value不支持直接这么做
     @Value("${spring.upload.allowed-type}")
     private List<String> allowedType;
-
-
 
     @Bean("multipartResolver")
     protected CommonsMultipartResolver multipartResolver() {

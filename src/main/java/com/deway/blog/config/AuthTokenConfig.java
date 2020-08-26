@@ -18,7 +18,7 @@ public class AuthTokenConfig {
     private boolean authorized;
 
     @Value("${spring.auth.session-expire}")
-    private int sessionExpire;
+    private Integer sessionExpire;
 
     @Value("${spring.auth.multi-sign-on}")
     private boolean multiSignOn;
