@@ -84,5 +84,5 @@ spring:
       - jpg
 
   redis:
-    host: www.touchim.cn
+    host: 106.13.35.55
     port: 6379
