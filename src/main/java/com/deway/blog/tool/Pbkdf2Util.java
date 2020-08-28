@@ -15,7 +15,7 @@ import java.util.Base64;
  *
  * @author Deway
  */
-public abstract class Pbkdf2Util {
+public final class Pbkdf2Util {
 
     public static final String PBKDF2_ALGORITHM = "PBKDF2WithHmacSHA1";
 
@@ -37,5 +37,7 @@ public abstract class Pbkdf2Util {
         }
         return Base64.getEncoder().encodeToString(encoded);
     }
+
+    private Pbkdf2Util() {}
 
 }

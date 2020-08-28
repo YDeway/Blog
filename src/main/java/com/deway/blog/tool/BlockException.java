@@ -1,16 +1,20 @@
 package com.deway.blog.tool;
 
 /**
- *  压制受常异常
+ *  压制受检查异常
  *
  * @author Deway
  */
 
-public abstract class BlockException {
-Object
+public final class BlockException {
+
     @SuppressWarnings("unchecked")
     public static <T extends Throwable> void  throwAsRuntimeException(Throwable e) throws T {
         throw (T)e;
     }
 
+    private BlockException() {
+    }
+
 }
+

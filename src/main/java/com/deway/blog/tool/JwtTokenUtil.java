@@ -11,7 +11,7 @@ import java.util.*;
  *
  * @author Deway
  */
-public class JwtTokenUtil {
+public final class JwtTokenUtil {
 
     /**
      * jwt生成器
@@ -54,4 +54,6 @@ public class JwtTokenUtil {
         return true;
     }
 
+
+    private JwtTokenUtil() {}
 }

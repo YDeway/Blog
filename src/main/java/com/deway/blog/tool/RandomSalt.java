@@ -4,7 +4,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.Base64;
 
-public class RandomSalt {
+public final class RandomSalt {
 
     public static final String RANDOM_ALGORITHM = "SHA1PRNG";
 
@@ -22,4 +22,7 @@ public class RandomSalt {
         random.nextBytes(salt);
         return Base64.getEncoder().encodeToString(salt);
     }
+
+    private RandomSalt() {}
+
 }
