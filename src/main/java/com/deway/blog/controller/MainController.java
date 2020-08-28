@@ -24,11 +24,4 @@ public class MainController {
         request.getSession();
         return R.response(HttpStatus.OK, System.getProperties());
     }
-
-    @GetMapping("/fuck")
-    public String xx() {
-        return "老子是jenkins测试";
-    }
-
-
 }
