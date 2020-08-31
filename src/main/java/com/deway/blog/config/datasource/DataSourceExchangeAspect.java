@@ -25,7 +25,9 @@ public class DataSourceExchangeAspect {
             TargetDataSource annotation = itfe.getAnnotation(TargetDataSource.class);
             if(annotation != null) {
                 DynamicDataSource.setDataSource(annotation.dataSource());
-                return point.proceed();
+                var proceed = point.proceed();
+                DynamicDataSource.removeDataSource();
+                return proceed;
             }
         }
         throw new Exception("Mapper needs to be annotated by TargetDataSource!");

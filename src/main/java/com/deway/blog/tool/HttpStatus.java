@@ -9,7 +9,7 @@ import lombok.Getter;
  */
 
 @Getter
-@Deprecated(since = "Spring 自带的有")
+@Deprecated(since = "no version.  Spring 自带的有")
 public enum HttpStatus {
 
     /**

@@ -9,7 +9,7 @@ package com.deway.blog.tool;
 public final class BlockException {
 
     @SuppressWarnings("unchecked")
-    public static <T extends Throwable> void  throwAsRuntimeException(Throwable e) throws T {
+    public static <T extends Throwable> void  throwAs(Throwable e) throws T {
         throw (T)e;
     }
 
