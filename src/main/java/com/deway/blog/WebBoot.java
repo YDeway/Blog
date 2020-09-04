@@ -1,11 +1,17 @@
 package com.deway.blog;
 
 import com.deway.blog.config.GlobalConfig;
+import org.springframework.web.SpringServletContainerInitializer;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
+import javax.servlet.ServletContainerInitializer;
 
 /**
- * 区分这个两个getter方法的区别
+ * 实现ServletContainerInitializer接口的类会被servlet容器发现并实例化调用onStartup方法
  *
+ * @todo 区分这个两个getter方法的区别
+ *
+ * @see SpringServletContainerInitializer
+ * @see ServletContainerInitializer
  * @author Deway
  */
 public class WebBoot extends AbstractAnnotationConfigDispatcherServletInitializer {
