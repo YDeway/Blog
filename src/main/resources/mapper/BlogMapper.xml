@@ -9,7 +9,9 @@
         select <include refid="baseMap"/>
         from blog
         <where>
-
+            <if test="authorId != null">
+                author_id=#{authorId}
+            </if>
         </where>
     </select>
 

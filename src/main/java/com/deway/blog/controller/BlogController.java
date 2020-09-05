@@ -5,9 +5,7 @@ import com.deway.blog.service.BlogService;
 import com.deway.blog.tool.R;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
@@ -20,9 +18,10 @@ public class BlogController {
 
     private final BlogService blogService;
 
-    @GetMapping
-    public R<List<Blog>> listBlog() {
-        return  R.response(HttpStatus.OK, blogService.list());
+    @GetMapping("/list/{pageNum}/{pageSize}")
+    public R<List<Blog>> listBlog(@PathVariable("pageNum")int pageNum,
+                                  @PathVariable("pageSize")int pageSize, Blog blog) {
+        return  R.response(HttpStatus.OK, blogService.list(pageNum, pageSize, blog));
     }
 
 }

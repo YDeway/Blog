@@ -32,6 +32,7 @@
     <jakarta.xml.bind-api.version>2.3.3</jakarta.xml.bind-api.version>
     <commons-fileupload.version>1.4</commons-fileupload.version>
     <tika-core.version>1.24.1</tika-core.version>
+    <pagehelper.version>5.2.0</pagehelper.version>
   </properties>
 
   <dependencies>
@@ -162,7 +163,6 @@
       <version>${java-jwt.version}</version>
     </dependency>
 
-
     <dependency>
       <groupId>jakarta.xml.bind</groupId>
       <artifactId>jakarta.xml.bind-api</artifactId>
@@ -179,6 +179,12 @@
       <groupId>org.apache.tika</groupId>
       <artifactId>tika-core</artifactId>
       <version>${tika-core.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.github.pagehelper</groupId>
+      <artifactId>pagehelper</artifactId>
+      <version>${pagehelper.version}</version>
     </dependency>
 
   </dependencies>

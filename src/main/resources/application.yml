@@ -69,6 +69,10 @@ spring:
       driver-class-name: org.mariadb.jdbc.Driver
       url: jdbc:mariadb://www.touchim.cn/blog
 
+  #分页插件的配置，暂时只配置这一个
+  pagehelper:
+    database: mariadb
+
   auth:
     session-expire: 3000 # 单位秒
     authorization: false

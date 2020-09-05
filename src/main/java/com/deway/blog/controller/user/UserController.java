@@ -27,6 +27,7 @@ public class UserController {
     private final AuthTokenConfig config;
 
     /**
+     *  注解@RequestBody接收请求体参数，注解RequestParam接收查询字符串参数,使用pojo接收query string时，不用加注解
      *
      * @todo 考虑多线程情况下同一个用户同时登录
      */
